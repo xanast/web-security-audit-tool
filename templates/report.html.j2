@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Security Audit Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f7f7f7; color: #111; }
+    .card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+    .tag { display: inline-block; padding: 6px 10px; border-radius: 999px; background: #eee; margin-right: 8px; }
+    pre { background: #111; color: #eee; padding: 12px; border-radius: 8px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Web Security Audit Report</h1>
+    <p><strong>Target:</strong> {{ report.target }}</p>
+    <p><strong>Score:</strong> {{ report.summary.score }}/100</p>
+    <p><strong>Risk:</strong> {{ report.summary.risk_level }}</p>
+  </div>
+
+  <div class="card">
+    <h2>Header Findings</h2>
+    {% for item in report.headers.findings %}
+      <p>
+        <strong>{{ item.header }}</strong> —
+        {{ item.status }} —
+        {{ item.description }}
+      </p>
+    {% endfor %}
+  </div>
+
+  <div class="card">
+    <h2>robots.txt</h2>
+    <pre>{{ report.robots }}</pre>
+  </div>
+
+  <div class="card">
+    <h2>Fingerprinting Indicators</h2>
+    <pre>{{ report.fingerprint }}</pre>
+  </div>
+
+  <div class="card">
+    <h2>TLS</h2>
+    <pre>{{ report.tls }}</pre>
+  </div>
+</body>
+</html>

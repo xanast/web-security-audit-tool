@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Security Audit Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f7f7f7; color: #111; }
+    .card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+    .tag { display: inline-block; padding: 6px 10px; border-radius: 999px; background: #eee; margin-right: 8px; }
+    pre { background: #111; color: #eee; padding: 12px; border-radius: 8px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Web Security Audit Report</h1>
+    <p><strong>Target:</strong> https://youtube.com</p>
+    <p><strong>Score:</strong> 89/100</p>
+    <p><strong>Risk:</strong> low</p>
+  </div>
+
+  <div class="card">
+    <h2>Header Findings</h2>
+    
+      <p>
+        <strong>Content-Security-Policy</strong> —
+        present —
+        Helps reduce XSS/injection impact
+      </p>
+    
+      <p>
+        <strong>Strict-Transport-Security</strong> —
+        present —
+        Forces HTTPS on supported browsers
+      </p>
+    
+      <p>
+        <strong>X-Content-Type-Options</strong> —
+        present —
+        Prevents MIME sniffing
+      </p>
+    
+      <p>
+        <strong>X-Frame-Options</strong> —
+        present —
+        Helps mitigate clickjacking
+      </p>
+    
+      <p>
+        <strong>Referrer-Policy</strong> —
+        missing —
+        Controls referrer leakage
+      </p>
+    
+      <p>
+        <strong>Permissions-Policy</strong> —
+        present —
+        Restricts browser features
+      </p>
+    
+  </div>
+
+  <div class="card">
+    <h2>robots.txt</h2>
+    <pre>{'url': 'https://youtube.com/robots.txt', 'exists': True, 'status_code': 200, 'disallow_count': 21, 'sitemap_count': 2, 'sample_lines': ['# robots.txt file for YouTube', '# Created in the distant future (the year 2000) after', "# the robotic uprising of the mid 90's which wiped out all humans.", 'User-agent: Mediapartners-Google*', 'Disallow:', 'User-agent: *', 'Disallow: /api/', 'Disallow: /comment', 'Disallow: /feeds/videos.xml', 'Disallow: /file_download', 'Disallow: /get_video', 'Disallow: /get_video_info', 'Disallow: /get_midroll_info', 'Disallow: /live_chat', 'Disallow: /login'], 'notes': ['robots.txt is advisory for crawlers and not an authorization mechanism']}</pre>
+  </div>
+
+  <div class="card">
+    <h2>Fingerprinting Indicators</h2>
+    <pre>{'indicators': [{'type': 'server_header', 'value': 'ESF'}, {'type': 'frontend_hint', 'value': 'Bootstrap detected'}]}</pre>
+  </div>
+
+  <div class="card">
+    <h2>TLS</h2>
+    <pre>{'tls_supported': True, 'tls_version': 'TLSv1.3', 'certificate_subject': {'commonName': '*.google.com'}, 'certificate_issuer': {'countryName': 'US', 'organizationName': 'Google Trust Services', 'commonName': 'WE2'}}</pre>
+  </div>
+</body>
+</html>
